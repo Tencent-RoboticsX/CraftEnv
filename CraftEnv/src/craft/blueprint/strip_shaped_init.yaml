@@ -1,0 +1,24 @@
+area_length: 4
+area_width: 4
+area_height: 3
+block_num: 4
+slope_num: 0
+smartcar_num: 2
+legged_robot_num: 2
+
+block:
+  - {id: 0,  x: 1, y: 0, z: 1}
+  - {id: 1,  x: 2, y: 1, z: 1}
+  - {id: 2,  x: 1, y: 2, z: 1}
+  - {id: 3,  x: 2, y: 3, z: 1}
+smartcar:
+  - {id: 0, x: 1,  y: 1,   z: 1, yaw: 0}
+  - {id: 1, x: 1,  y: 3,   z: 1, yaw: 0}
+
+flag:
+  - {id: 0, x: -1, y: -2, z: 1}
+goal:
+  - {id: 0, x: -1, y: -2, z: 1}
+legged_robot:
+  - {id: 0, x: -1,  y: 0, z: 0.335, yaw: 1}
+  - {id: 1, x: -1,  y: -3, z: 0.335, yaw: 0}

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com)
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="slope"
+  xmlns:xacro="http://ros.org/wiki/xacro">
+  <link name="slope_base">
+    <inertial>
+      <origin xyz="0 -0.16 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="0.013609" ixy="5.3826E-06" ixz="1.1115E-05" iyy="0.022909" iyz="-0.0034102" izz="0.013642" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://slope/meshes/slope_base.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 -0.16 0" rpy="0 0 1.57" />
+      <geometry>
+        <mesh filename="package://slope/meshes/slope_base_collision.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="slope_end">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.1" />
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0.0019145" izz="0.01" />
+    </inertial>
+    <visual>
+      <origin xyz="0.02 0 0.005" rpy="0.085 0 0" />
+      <geometry>
+        <mesh filename="package://slope/meshes/slope_end.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0.16 -0.0925" rpy="0 0 1.57" />
+      <geometry>
+        <mesh filename="package://slope/meshes/slope_end_collision.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="rot" type="revolute">
+    <origin xyz="0 0 0.095" rpy="3.14 0 0" />
+    <parent link="slope_base" />
+    <child link="slope_end" />
+    <limit upper="0" lower="-3.14" velocity="0.3" effort="10"/>
+    <axis xyz="1 0 0" />
+  </joint>
+
+  <transmission name="rot_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rot">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rot_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <link name="base_link">
+  </link>
+  <joint name="floor_joint" type="fixed">
+    <origin xyz="0.16 0 0" rpy="0 0 -1.57"/>
+    <parent link="base_link"/>
+    <child link="slope_base" />
+  </joint>
+  <!-- Bring in simulation data for Gazebo. -->
+  <xacro:include filename="$(find slope)/urdf/slope.gazebo" />
+
+</robot>

@@ -1,0 +1,40 @@
+env: flag
+
+env_args:
+  arena_id: 'Craft-v0'
+  init_blueprint_path: '/home/droid/Downloads/CraftEnv/CraftEnv/src/craftenv/sim_envs/pybullet_envs/craft/blueprint/breaking_barrier_init.yaml'
+  design_path: '/home/droid/Downloads/CraftEnv/CraftEnv/src/craftenv/sim_envs/pybullet_envs/craft/blueprint/breaking_barrier_goal.yaml'
+  reward_cnt: 1
+  act_lift: 0
+  act_drop: 0
+  act_fold: 0
+  act_unfo: 0
+  lift_block: 0
+  lift_slope: 0
+  second_floor: 0
+  third_floor: 0
+  lift_flag: 0
+  reach_goal: 0
+  max_steps: 18 # 8 # 18 # 48 # 28
+  step_penalty: 0
+  block_near_unfold: 1
+  building_complexity: 1
+  complexity_1: 1
+  complexity_2: 5
+  complexity_3: 50
+  complexity_4: 10
+  complexity_5: 25
+  complexity_6: 50
+  building_complexity_max: 10000
+  second_floor_block: 0
+  reachable_space: 0
+  block_on_block: 1
+  fold_on_block: 5
+  unfold_on_block: 10
+  block_unfold_on_block: 25
+  block_on_block_on_block: 50
+  enable_local_obs: False
+  local_max_free_num: 10
+  local_max_block_num: 10
+  local_max_slope_num: 10
+  search_depth: 20

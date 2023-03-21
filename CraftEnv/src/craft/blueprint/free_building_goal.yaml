@@ -1,0 +1,12 @@
+block:
+  - {id: 0,  x: 3, y: 1, z: 1}
+  - {id: 1,  x: 3, y: 2, z: 1}
+  - {id: 2,  x: 4, y: 1, z: 1}
+  - {id: 3,  x: 4, y: 2, z: 1}
+unfolded_body:
+  - {id: 0,  x: 2, y: 1, z: 1}
+  - {id: 1,  x: 2, y: 2, z: 1}
+unfolded_foot:
+  - {id: 0,  x: 1, y: 1, z: 1}
+  - {id: 1,  x: 1, y: 2, z: 1}
+# no use

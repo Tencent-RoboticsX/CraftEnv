@@ -1,0 +1,4 @@
+PyMARL git commit: c971afdceb34635d31b778021b0ef90d7af51e86
+EPyMARL git commit: f355a55262ac9afecdb53368fec6337c549cc160
+We merged the MAPPO implementation of EPyMARL into PyMARL.
+We also made modifications to connect CraftEnv environment to the PyMARL framework.

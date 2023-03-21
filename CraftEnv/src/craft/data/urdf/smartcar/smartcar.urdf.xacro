@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<robot name="smartcar"
+  xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:property name="PI" value="3.1415926535897931" />
+
+  <xacro:property name="wheel_radius" value="0.043" />
+  <xacro:property name="wheel_width" value="0.04" />
+
+  <xacro:property name="wheel_offset_x" value="0.06" />
+  <xacro:property name="wheel_offset_y" value="0.083" />
+
+  <xacro:property name="board_length" value="0.194" />
+  <xacro:property name="board_width" value="0.2" />
+  <xacro:property name="board_height" value="0.003" />
+
+  <material name="dark_grey">
+    <color rgba="0.2 0.2 0.2 1.0" />
+  </material>
+  <material name="light_grey">
+    <color rgba="0.4 0.4 0.4 1.0" />
+  </material>
+  <material name="red">
+    <color rgba="0.8 0.0 0.0 1.0" />
+  </material>
+  <material name="white">
+    <color rgba="0.9 0.9 0.9 1.0" />
+  </material>
+  <material name="yellow">
+    <color rgba="0.8 0.8 0.0 1.0" />
+  </material>
+  <material name="black">
+    <color rgba="0.15 0.15 0.15 1.0" />
+  </material>
+
+  <xacro:macro name="wheel" params="parent_link prefix side *joint_pose">
+    <link name="${prefix}_${side}_wheel_link">
+      <visual>
+        <origin xyz="0 0.006 0" rpy="0 0 ${PI/2}"/>
+        <geometry>
+          <mesh filename="package://smartcar/meshes/wheel.STL"/>
+        </geometry>
+        <material name="black" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="2.3"/>
+        <inertia ixx="3.3212e-3" ixy="0" ixz="0" iyy="6.6424e-3" iyz="0" izz="3.3212e-3"/>
+      </inertial>
+    </link>
+
+    <joint name="${prefix}_${side}_wheel" type="continuous">
+      <parent link="${parent_link}"/>
+      <child link="${prefix}_${side}_wheel_link" />
+      <xacro:insert_block name="joint_pose" />
+      <axis xyz="0 1 0" />
+    </joint>
+
+    <transmission name="${prefix}_wheel_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}_${side}_wheel">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}_${side}_actuator">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+  </xacro:macro>
+
+  <link name="base_link"></link>
+
+  <joint name="base_link_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="base_link"/>
+    <child link="chassis_link" />
+  </joint>
+
+  <link name="chassis_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://smartcar/meshes/body_link.STL"/>
+      </geometry>
+      <material name="black" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://smartcar/meshes/body_link.STL"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 -0.025" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia ixx="0.025" ixy="0.0" ixz="0.0" iyy="0.025" iyz="0.0" izz="0.0375"/>
+    </inertial>
+  </link>
+
+  <xacro:wheel parent_link="base_link" prefix="front" side="left">
+    <origin xyz="${wheel_offset_x} ${wheel_offset_y} 0" rpy="0 0 0" />
+  </xacro:wheel>
+
+  <xacro:wheel parent_link="base_link" prefix="rear" side="left">
+    <origin xyz="-${wheel_offset_x} ${wheel_offset_y} 0" rpy="0 0 0" />
+  </xacro:wheel>
+
+  <xacro:wheel parent_link="base_link" prefix="front" side="right">
+    <origin xyz="${wheel_offset_x} -${wheel_offset_y} 0" rpy="0 0 0" />
+  </xacro:wheel>
+
+  <xacro:wheel parent_link="base_link" prefix="rear" side="right">
+    <origin xyz="-${wheel_offset_x} -${wheel_offset_y} 0" rpy="0 0 0" />
+  </xacro:wheel>
+
+  <joint name="board_loading_joint" type="prismatic">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="chassis_link"/>
+    <child link="board_link" />
+    <axis xyz="0 0 1"/>
+    <limit effort="10000" lower="0.0" upper="0.045" velocity="0.05"/>
+  </joint>
+
+  <transmission name="board_loading_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="board_loading_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="board_loading_actuator">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <link name="board_link">
+    <visual>
+      <origin xyz="0 0 0.053" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://smartcar/meshes/board.STL" />
+      </geometry>
+      <material name="black" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.053" rpy="0 0 0" />
+      <geometry>
+        <box size="${board_length} ${board_width} ${board_height}"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0.053" rpy="0 0 0"/>
+      <mass value="0.1"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.002"/>
+    </inertial>
+  </link>
+</robot>

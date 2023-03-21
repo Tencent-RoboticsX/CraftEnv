@@ -1,0 +1,77 @@
+area_length: 5
+area_width: 4
+area_height: 3
+block_num: 6
+slope_num: 2
+smartcar_num: 4
+legged_robot_num: 2
+
+# block:
+#   - {id: 0,  x: 3, y: 0, z: 1}
+#   - {id: 1,  x: 3, y: 3, z: 1}
+#   - {id: 2,  x: 4, y: 0, z: 1}
+#   - {id: 3,  x: 4, y: 3, z: 1}
+#   - {id: 4,  x: 0, y: 1, z: 1}
+#   - {id: 5,  x: 0, y: 2, z: 1}
+# smartcar:
+#   - {id: 0, x: 1,  y: 0,   z: 1, yaw: 0}
+#   - {id: 1, x: 1,  y: 3,   z: 1, yaw: 0}
+#   - {id: 2, x: 3,  y: 1,   z: 1, yaw: 0}
+#   - {id: 3, x: 3,  y: 2,   z: 1, yaw: 0}
+# fold_slope:
+#   - {id: 0, x: 2,  y: 1,   z: 1, yaw: 2}
+#   - {id: 1, x: 2,  y: 2,   z: 1, yaw: 2}
+# flag:
+#   - {id: 0, x: -1, y: -2, z: 1}
+# goal:
+#   - {id: 0, x: -1, y: -2, z: 1}
+# legged_robot:
+#   - {id: 0, x: -1,  y: 0, z: 0.335, yaw: 1}
+#   - {id: 1, x: -1,  y: -3, z: 0.335, yaw: 0}
+
+
+# block:
+#   - {id: 0,  x: 3, y: 1, z: 1}
+#   - {id: 1,  x: 3, y: 2, z: 1}
+#   - {id: 2,  x: 4, y: 1, z: 1}
+#   - {id: 3,  x: 4, y: 2, z: 1}
+#   - {id: 4,  x: 3, y: 1, z: 2}
+#   - {id: 5,  x: 4, y: 2, z: 2}
+# smartcar:
+#   - {id: 0, x: 1,  y: 0,   z: 1, yaw: 0}
+#   - {id: 1, x: 1,  y: 3,   z: 1, yaw: 0}
+#   - {id: 2, x: 3,  y: 1,   z: 1, yaw: 0}
+#   - {id: 3, x: 3,  y: 2,   z: 1, yaw: 0}
+# unfold_slope:
+#   - {id: 0, x: 2,  y: 1,   z: 1, yaw: 2}
+#   - {id: 1, x: 2,  y: 2,   z: 1, yaw: 2}
+# flag:
+#   - {id: 0, x: -1, y: -2, z: 1}
+# goal:
+#   - {id: 0, x: -1, y: -2, z: 1}
+# legged_robot:
+#   - {id: 0, x: -1,  y: 0, z: 0.335, yaw: 1}
+#   - {id: 1, x: -1,  y: -3, z: 0.335, yaw: 0}
+
+block:
+  - {id: 0,  x: 3, y: 0, z: 1}
+  - {id: 1,  x: 3, y: 3, z: 1}
+  - {id: 2,  x: 4, y: 0, z: 1}
+  - {id: 3,  x: 4, y: 3, z: 1}
+  - {id: 4,  x: 0, y: 1, z: 1}
+  - {id: 5,  x: 0, y: 2, z: 1}
+smartcar:
+  - {id: 0, x: 2,  y: 0,   z: 1, yaw: 0}
+  - {id: 1, x: 2,  y: 3,   z: 1, yaw: 0}
+  - {id: 2, x: 0,  y: 1,   z: 1, yaw: 0}
+  - {id: 3, x: 0,  y: 2,   z: 1, yaw: 0}
+fold_slope:
+  - {id: 0, x: 2,  y: 1,   z: 1, yaw: 2}
+  - {id: 1, x: 2,  y: 2,   z: 1, yaw: 2}
+flag:
+  - {id: 0, x: -1, y: -2, z: 1}
+goal:
+  - {id: 0, x: -1, y: -2, z: 1}
+legged_robot:
+  - {id: 0, x: -1,  y: 0, z: 0.335, yaw: 1}
+  - {id: 1, x: -1,  y: -3, z: 0.335, yaw: 0}
